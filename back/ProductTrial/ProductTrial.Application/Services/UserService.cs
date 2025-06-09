@@ -7,18 +7,20 @@ namespace ProductTrial.Application.Services;
 public class UserService : IUserService
 {
     private readonly IUserRepository _repository;
+    private readonly IJwtService _jwtService;
 
-    public UserService(IUserRepository repository)
+    public UserService(IUserRepository repository, IJwtService jwtService)
     {
         _repository = repository;
+        _jwtService = jwtService;
     }
 
     public Task<string> AuthAsync(string email, string password)
     {
-        // TODO: Implement actual authentication logic
-        if (true) // Replace with actual authentication logic
+        var user = _repository.AuthAsync(email, password);
+        if (user is not null)
         {
-            return Task.FromResult("Authenticated successfully");
+            return Task.FromResult(_jwtService.GenerateToken(email));
         }
         else
         {

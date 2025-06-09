@@ -23,6 +23,13 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+builder.Services.AddScoped<IJwtService>(provider =>
+{
+    var secretKey = builder.Configuration["Jwt:SecretKey"];
+    var issuer = builder.Configuration["Jwt:Issuer"];
+    return new JwtService(secretKey, issuer);
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
