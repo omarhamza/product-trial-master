@@ -1,0 +1,6 @@
+@ProductTrial_HostAddress = http://localhost:5279
+
+GET {{ProductTrial_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
