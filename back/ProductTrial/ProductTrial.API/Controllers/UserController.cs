@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductTrial.Application.Interfaces;
 using ProductTrial.Domain.Entities;
+using ProductTrial.Domain.Models;
 
 namespace ProductTrial.API.Controllers
 {
@@ -25,14 +26,21 @@ namespace ProductTrial.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> Add(User user)
+        public async Task<IActionResult> Add([FromBody] CreateUser createUser)
         {
+            var user = new User
+            {
+                Firstname = createUser.FirstName,
+                Lastname = createUser.LastName,
+                Email = createUser.Email,
+                Password = createUser.Password
+            };
             var createdUser = await _userService.CreateAsync(user);
 
             return CreatedAtAction(
-                $"UserId_{createdUser.Id}",
-                new { id = createdUser.Id },
-                createdUser
+                nameof(Get),
+                new { email = createUser.Email, password = createUser.Email },
+                user
             );
         }
     }
