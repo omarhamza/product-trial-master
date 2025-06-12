@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductTrial.API", "ProductTrial\ProductTrial.API.csproj", "{C67670BA-1C71-4976-AE5E-75577E72A9E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductTrial.API", "ProductTrial.API\ProductTrial.API.csproj", "{C67670BA-1C71-4976-AE5E-75577E72A9E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductTrial.Domain", "ProductTrial.Domain\ProductTrial.Domain.csproj", "{CB3970E1-7CAC-4FB4-9D9F-18FA5B0BF2D3}"
 EndProject

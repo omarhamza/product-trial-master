@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProductTrial.Application.Interfaces;
 using ProductTrial.Domain.Entities;
 
-namespace ProductTrial.Controllers
+namespace ProductTrial.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
