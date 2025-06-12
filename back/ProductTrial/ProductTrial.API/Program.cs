@@ -4,6 +4,7 @@ using ProductTrial.Application.Services;
 using ProductTrial.Domain.Interfaces;
 using ProductTrial.Infrastructure.Data;
 using ProductTrial.Infrastructure.Persistence;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +37,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference();
 }
+
+app.MapScalarApiReference("/docs", options =>
+{
+    options.WithTheme(ScalarTheme.Mars);
+});
 
 app.UseHttpsRedirection();
 

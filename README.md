@@ -1,3 +1,7 @@
+## How to test it
+
+Pour tester l'application et exploiter les endpoints utiliser cette url: https://localhost:7147/docs
+
 # Consignes
 
 - Vous êtes développeur front-end : vous devez réaliser les consignes décrites dans le chapitre [Front-end](#Front-end)
