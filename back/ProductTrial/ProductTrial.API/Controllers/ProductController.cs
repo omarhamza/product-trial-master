@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductTrial.Application.Interfaces;
 using ProductTrial.Domain.Entities;
@@ -7,6 +8,7 @@ namespace ProductTrial.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize(Policy = "AdminOnly")]
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;

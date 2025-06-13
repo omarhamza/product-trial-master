@@ -15,16 +15,16 @@ public class UserService : IUserService
         _jwtService = jwtService;
     }
 
-    public Task<string> AuthAsync(string email, string password)
+    public async Task<string> AuthAsync(string email, string password)
     {
-        var user = _repository.AuthAsync(email, password);
+        var user = await _repository.GetByEmailAsync(email, password);
         if (user is not null)
         {
-            return Task.FromResult(_jwtService.GenerateToken(email));
+            return _jwtService.GenerateToken(email);
         }
         else
         {
-            return Task.FromResult("Authentication failed");
+            return "Authentication failed";
         }
     }
 

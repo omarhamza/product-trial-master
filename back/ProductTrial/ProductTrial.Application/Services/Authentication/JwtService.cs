@@ -1,10 +1,11 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using ProductTrial.Application.Interfaces;
+using ProductTrial.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ProductTrial.Application.Services;
+namespace ProductTrial.Application.Services.Authentication;
 
 public class JwtService : IJwtService
 {
@@ -33,7 +34,7 @@ public class JwtService : IJwtService
             issuer: _issuer,
             audience: _issuer,
             claims: claims,
-            expires: DateTime.UtcNow.AddHours(1),
+            expires: DateTime.UtcNow.AddHours(10),
             signingCredentials: creds
         );
 

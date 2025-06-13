@@ -29,12 +29,11 @@ namespace ProductTrial.Infrastructure.Persistence
             return user;
         }
 
-        public async Task<string> AuthAsync(string email, string password)
+        public async Task<User> GetByEmailAsync(string email, string password)
         {
-            return await _context.Users
-                .Where(u => u.Email == email && u.Password == password)
-                .Select(u => u.Email)
-                .FirstOrDefaultAsync() ?? throw new UnauthorizedAccessException("Invalid credentials");
+            return await _context
+                            .Users
+                            .FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
         }
     }
 }
