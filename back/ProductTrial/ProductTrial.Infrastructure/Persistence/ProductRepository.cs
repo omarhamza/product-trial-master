@@ -28,5 +28,13 @@ namespace ProductTrial.Infrastructure.Persistence
                 .ToListAsync()
                 .ContinueWith(task => task.Result.AsEnumerable());
         }
+
+        public async Task<Product> GetByIdAsync(int id)
+        {
+            return await _context.Products
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(p => p.Id == id)
+                        .ContinueWith(task => task.Result);
+        }
     }
 }

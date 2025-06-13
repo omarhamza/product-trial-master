@@ -12,7 +12,7 @@ public class Product
     public int Quantity { get; set; }
     public string InternalReference { get; set; }
     public int ShellId { get; set; }
-    public string InventoryStatus { get; set; }
+    public InventoryStatus InventoryStatus { get; set; }
     public int Rating { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;

@@ -35,7 +35,7 @@ namespace ProductTrial.API.Controllers
                 Email = createUser.Email,
                 Password = createUser.Password
             };
-            var createdUser = await _userService.CreateAsync(user);
+            await _userService.CreateAsync(user);
 
             return CreatedAtAction(
                 nameof(Get),

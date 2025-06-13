@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductTrial.Application.Interfaces;
 using ProductTrial.Domain.Entities;
+using ProductTrial.Domain.Models;
 
 namespace ProductTrial.API.Controllers
 {
@@ -9,33 +10,51 @@ namespace ProductTrial.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
-        //private readonly IProductRepository _productRepository;
         private readonly IProductService _productService;
 
         public ProductController(ILogger<ProductController> logger,
-            //IProductRepository productRepository, 
             IProductService productService)
         {
             _logger = logger;
-            //_productRepository = productRepository;
             _productService = productService;
         }
 
         [HttpGet]
-        public Task<IEnumerable<Product>> Get()
+        public async Task<IEnumerable<Product>> Get()
         {
-            return _productService.GetAllAsync();
+            return await _productService.GetAllAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<Product> GetById(int id)
+        {
+            return await _productService.GetByIdAsync(id);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Product>> Add(Product product)
+        public async Task<ActionResult<Product>> Add(CreateProduct createdProduct)
         {
-            var createdProduct = await _productService.CreateAsync(product);
+            var product = new Product
+            {
+                Category = createdProduct.Category,
+                Code = createdProduct.Code,
+                Name = createdProduct.Name,
+                Description = createdProduct.Description,
+                Image = createdProduct.Image,
+                InternalReference = createdProduct.InternalReference,
+                InventoryStatus = createdProduct.InventoryStatus,
+                Price = createdProduct.Price,
+                Quantity = createdProduct.Quantity,
+                Rating = createdProduct.Rating,
+                ShellId = createdProduct.ShellId
+            };
+
+            await _productService.CreateAsync(product);
 
             return CreatedAtAction(
-                $"ProductId_{createdProduct.Id}",
-                new { id = createdProduct.Id },
-                createdProduct
+                nameof(GetById),
+                new { id = product.Id },
+                product
             );
         }
     }
